@@ -281,8 +281,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 10, y: 1.9719684, z: 10}
+  m_Center: {x: 0, y: -0.9859842, z: 0}
 --- !u!64 &427084749
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -480,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 406850, guid: 95927758d3a4cef4ba6c4318f06876fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.57
+      value: 12.14
       objectReference: {fileID: 0}
     - target: {fileID: 406850, guid: 95927758d3a4cef4ba6c4318f06876fd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -625,7 +625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2f8d00bf5057f624e949aef802595da9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.166073
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2f8d00bf5057f624e949aef802595da9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -633,7 +633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2f8d00bf5057f624e949aef802595da9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.26385117
+      value: -0.26
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2f8d00bf5057f624e949aef802595da9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -767,8 +767,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.4178426, y: 2.8702178, z: 0.7570622}
-  m_Center: {x: -0.0013415217, y: 1.4264705, z: 0.004858643}
+  m_Size: {x: 1.434987, y: 2.8522158, z: 0.7570622}
+  m_Center: {x: -0.0026567578, y: 1.4174695, z: 0.004858643}
 --- !u!114 &1023738306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,3 +781,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676fbd064823d485b9832cac984b412a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpForce: 30
+  gravityModifier: 10
+  explosionParticle: {fileID: 0}
+  dirtParticle: {fileID: 0}
+  jumpSound: {fileID: 0}
+  crashSound: {fileID: 0}
