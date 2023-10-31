@@ -33,9 +33,11 @@ public class PlayerController : MonoBehaviour
         isOnGround = true;
         Physics.gravity *= gravityModifier;
         playerRb = GetComponent<Rigidbody>();
-
+        
     }
 
+    // If the player is on the ground then this force is applied when the input for jump is pressed
+    // and the player jumps
     private void OnJump(InputValue input)
     {
         if (isOnGround)
@@ -44,18 +46,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    // Detects whether the players rigibody is on the ground and if it is the player can jump
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Ground")
         {
             isOnGround = true;
         }
+        GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.tag == "Obstacles")
+        {
+            gameOver = true;
+        }    
     }
+
+
 }
