@@ -10,6 +10,7 @@ public class SpawnManager : MonoBehaviour
     private Vector3 spawnPos = new Vector3(25, 0, 0); //instead of new Vector3... you could do Vector3.right (which is 1,0,0) * 25
     private float startDelay = 2;
     private float repeatRate = 2;
+    public bool gameOver { get; private set; }
 
     // Start is called before the first frame update
     private void Start()
@@ -21,5 +22,9 @@ public class SpawnManager : MonoBehaviour
     private void SpawnObstacle()
     {
         Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+        if (gameOver)
+        {
+            CancelInvoke();
+        } 
     }
 }
