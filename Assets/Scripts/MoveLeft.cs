@@ -18,6 +18,9 @@ public class MoveLeft : MonoBehaviour
         }
 
         if (transform.position.x < leftBound)
+        {
+            Destroy(gameObject);
+        }
     }
     
 }
