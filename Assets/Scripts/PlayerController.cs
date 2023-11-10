@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             playerAnimation.SetTrigger("Jump_trig");
             isOnGround = false;
+            dirtParticle.Stop();
         }
         
         
@@ -57,21 +58,28 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.name == "Ground")
         {
             isOnGround = true;
+            dirtParticle.Play();
         }
 
+        //This checks if the gameObject the player collides with has the obstacles tag and if so,
+        //ends the game and plays the death animation
         if (collision.gameObject.CompareTag("Obstacles"))
         {
             gameOver = true;
             playerAnimation.SetBool("Death_b", true);
+            dirtParticle.Stop();
+            explosionParticle.Play();
         }
     }
 
-
+    //This checks if the gameObject the player collides with has the obstacles tag and if so,
+    //ends the game
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Obstacles")
         {
             gameOver = true;
+            dirtParticle.Stop();
         }    
     }
 
