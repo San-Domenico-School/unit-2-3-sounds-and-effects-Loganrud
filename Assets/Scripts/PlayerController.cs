@@ -28,22 +28,27 @@ public class PlayerController : MonoBehaviour
 
     // Start is called before the first frame update
     private void Start()
-    {
-         
+    { 
         isOnGround = true;
         Physics.gravity *= gravityModifier;
         playerRb = GetComponent<Rigidbody>();
-        
+        playerAnimation = GetComponent<Animator>();
+        GameObject.Find("Player").GetComponent<PlayerController>();
+
     }
 
     // If the player is on the ground then this force is applied when the input for jump is pressed
     // and the player jumps
     private void OnJump(InputValue input)
     {
-        if (isOnGround)
+        if (isOnGround && !gameOver)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            playerAnimation.SetTrigger("Jump_trig");
+            isOnGround = false;
         }
+        
+        
     }
 
     // Detects whether the players rigibody is on the ground and if it is the player can jump
@@ -53,7 +58,12 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
         }
-        GameObject.Find("Player").GetComponent<PlayerController>();
+
+        if (collision.gameObject.CompareTag("Obstacles"))
+        {
+            gameOver = true;
+            playerAnimation.SetBool("Death_b", true);
+        }
     }
 
 
