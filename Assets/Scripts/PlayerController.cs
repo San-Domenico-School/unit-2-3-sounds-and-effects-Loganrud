@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
  * to jump.
  * 
  * Logan Rudsenske
- * PLayer Controller Versiom 1.0
+ * Player Controller Version 1.0
  ********************************************/
 
 
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         Physics.gravity *= gravityModifier;
         playerRb = GetComponent<Rigidbody>();
         playerAnimation = GetComponent<Animator>();
-        GameObject.Find("Player").GetComponent<PlayerController>();
+        playerAudio  = GetComponent<AudioSource>();
 
     }
 
@@ -47,9 +47,8 @@ public class PlayerController : MonoBehaviour
             playerAnimation.SetTrigger("Jump_trig");
             isOnGround = false;
             dirtParticle.Stop();
+            playerAudio.PlayOneShot(jumpSound, 10.0f);
         }
-        
-        
     }
 
     // Detects whether the players rigibody is on the ground and if it is the player can jump
@@ -59,6 +58,7 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
             dirtParticle.Play();
+            
         }
 
         //This checks if the gameObject the player collides with has the obstacles tag and if so,
@@ -67,8 +67,9 @@ public class PlayerController : MonoBehaviour
         {
             gameOver = true;
             playerAnimation.SetBool("Death_b", true);
-            dirtParticle.Stop();
             explosionParticle.Play();
+            dirtParticle.Stop();
+            playerAudio.PlayOneShot(crashSound, 20.0f);
         }
     }
 
@@ -76,12 +77,6 @@ public class PlayerController : MonoBehaviour
     //ends the game
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Obstacles")
-        {
-            gameOver = true;
-            dirtParticle.Stop();
-        }    
+       
     }
-
-
 }
