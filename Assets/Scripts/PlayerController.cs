@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // If the player is on the ground then this force is applied when the input for jump is pressed
-    // and the player jumps
+    // and the player jumps the dirt particles will then stop and the jump sound plays
     private void OnJump(InputValue input)
     {
         if (isOnGround && !gameOver)
@@ -62,7 +62,8 @@ public class PlayerController : MonoBehaviour
         }
 
         //This checks if the gameObject the player collides with has the obstacles tag and if so,
-        //ends the game and plays the death animation
+        //ends the game and plays the death animation, and the dirt particles stop and the
+        //death sound plays
         if (collision.gameObject.CompareTag("Obstacles"))
         {
             gameOver = true;
