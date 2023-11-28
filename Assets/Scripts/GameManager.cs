@@ -5,14 +5,11 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI scoreboardText;
-    private TextMeshProUGUI timeRemainingText;
-    private GameObject toggleGroup;
-    private GameObject startButton;
-    private GameObject spawnManager;
-    private Animator playerAnimator;
-    private ParticleSystem dirtSplatter;
+
+    [SerializeField] private TextMeshProUGUI scoreboardText, timeRemainingText;
+    [SerializeField] private GameObject toggleGroup, startButton, spawnManager;
+    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private ParticleSystem dirtSplatter;
     public static bool gameOver = true;
     private static float score;
     private AudioSource audioSource;
@@ -22,18 +19,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        
+        DisplayUI();
+        EndGame();
     }
 
     private void DisplayUI()
     {
-
+        
     }
 
     private void TimeCountdown()
@@ -43,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        audioSource.Play();
 
     }
 

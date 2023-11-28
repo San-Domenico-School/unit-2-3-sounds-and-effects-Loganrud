@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     private Rigidbody playerRb;
     private bool isOnGround;
-    public bool gameOver {get; private set;}
+    
 
     // Start is called before the first frame update
     private void Start()
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     // and the player jumps the dirt particles will then stop and the jump sound plays
     private void OnJump(InputValue input)
     {
-        if (isOnGround && !gameOver)
+        if (isOnGround && !GameManager.gameOver)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             playerAnimation.SetTrigger("Jump_trig");
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     // Detects whether the players rigibody is on the ground and if it is the player can jump
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Ground")
+        if (collision.gameObject.name == "Ground" && !GameManager.gameOver)
         {
             isOnGround = true;
             dirtParticle.Play();
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         //death sound plays
         if (collision.gameObject.CompareTag("Obstacles"))
         {
-            gameOver = true;
+            GameManager.gameOver = true;
             playerAnimation.SetBool("Death_b", true);
             explosionParticle.Play();
             dirtParticle.Stop();
