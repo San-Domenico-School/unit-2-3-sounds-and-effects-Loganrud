@@ -78,6 +78,9 @@ public class PlayerController : MonoBehaviour
     //ends the game
     private void OnTriggerEnter(Collider other)
     {
-       
+        if (other.gameObject.CompareTag ("Scoreable"))
+        {
+            GameManager.ChangeScore(5);
+        }
     }
 }
